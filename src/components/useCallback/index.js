@@ -1,25 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 
 const UseCallback = () => {
   const [age, setAge] = useState(99);
-  const handleClick = () => setAge(age + 1);
+  const handleClick = useCallback(() => setAge(a => a + 1), [setAge]);
   const someValue = "someValue";
-  const doSomething = () => {
+  const doSomething = useCallback(() => {
     return someValue;
-  };
+  }, [someValue]);
 
   return (
     <div>
-      <Age age={age} handleClick={handleClick} />
+      <div style={{ border: "2px", background: "papayawhip", padding: "1rem" }}>Today I am {age} Years of Age</div>
+      <Age handleClick={handleClick} />
       <Instructions doSomething={doSomething} />
     </div>
   );
 };
 
-const Age = ({ age, handleClick }) => {
+const Age = React.memo(({ handleClick }) => {
+  console.log("render age");
   return (
     <div>
-      <div style={{ border: "2px", background: "papayawhip", padding: "1rem" }}>Today I am {age} Years of Age</div>
       <pre>
         {" "}
         - click the button below
@@ -30,15 +31,16 @@ const Age = ({ age, handleClick }) => {
       <button onClick={handleClick}>Get older! </button>
     </div>
   );
-};
+});
 
-const Instructions = () => {
+const Instructions = React.memo(props => {
   console.log("render instructions");
+  console.log("render instructions props", props);
   return (
     <div style={{ background: "black", color: "yellow", padding: "1rem" }}>
       <p>Follow the instructions above as closely as possible</p>
     </div>
   );
-};
+});
 
 export default UseCallback;
