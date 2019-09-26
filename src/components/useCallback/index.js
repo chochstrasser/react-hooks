@@ -1,46 +1,37 @@
-import React, { useState, useCallback } from "react";
+import React from "react";
+import { NavLink } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
+import UseCallbackExampleOne from "./examples/example-one.js";
+import UseCallbackExampleTwo from "./examples/example-two.js";
+import UseCallbackExampleThree from "./examples/example-three.js";
 
 const UseCallback = () => {
-  const [age, setAge] = useState(99);
-  const handleClick = useCallback(() => setAge(a => a + 1), [setAge]);
-  const someValue = "someValue";
-  const doSomething = useCallback(() => {
-    return someValue;
-  }, [someValue]);
-
   return (
-    <div>
-      <div style={{ border: "2px", background: "papayawhip", padding: "1rem" }}>Today I am {age} Years of Age</div>
-      <Age handleClick={handleClick} />
-      <Instructions doSomething={doSomething} />
-    </div>
+    <>
+      <ul>
+        <li>
+          <NavLink activeClassName="active" to="/useCallback/example-one">
+            Example one
+          </NavLink>
+        </li>
+        <li>
+          <NavLink activeClassName="active" to="/useCallback/example-two">
+            Example two
+          </NavLink>
+        </li>
+        <li>
+          <NavLink activeClassName="active" to="/useCallback/example-three">
+            Example three
+          </NavLink>
+        </li>
+      </ul>
+      <Switch>
+        <Route path="/useCallback/example-one" component={UseCallbackExampleOne} />
+        <Route path="/useCallback/example-two" component={UseCallbackExampleTwo} />
+        <Route path="/useCallback/example-three" component={UseCallbackExampleThree} />
+      </Switch>
+    </>
   );
 };
-
-const Age = React.memo(({ handleClick }) => {
-  console.log("render age");
-  return (
-    <div>
-      <pre>
-        {" "}
-        - click the button below
-        <span role="img" aria-label="emoji">
-          👇
-        </span>
-      </pre>
-      <button onClick={handleClick}>Get older! </button>
-    </div>
-  );
-});
-
-const Instructions = React.memo(props => {
-  console.log("render instructions");
-  console.log("render instructions props", props);
-  return (
-    <div style={{ background: "black", color: "yellow", padding: "1rem" }}>
-      <p>Follow the instructions above as closely as possible</p>
-    </div>
-  );
-});
 
 export default UseCallback;

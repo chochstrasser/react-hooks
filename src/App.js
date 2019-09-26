@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Nav from "./components/navigation";
 import Home from "./components/home";
 import UseCallback from "./components/useCallback";
+import UseMemo from "./components/useMemo";
 
 const App = () => {
   return (
@@ -12,6 +13,7 @@ const App = () => {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/usecallback" component={UseCallback} />
+          <Route path="/usememo" component={UseMemo} />
           <Route render={() => <p>Not Found</p>} />
         </Switch>
       </div>
