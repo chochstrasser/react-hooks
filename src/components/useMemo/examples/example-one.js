@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useMemo } from "react";
 
-const useFetch = url => {
+const useFetch = (url, count) => {
   const isCurrent = useRef(true);
   const [state, setState] = useState({ data: null, loading: true });
 
@@ -16,7 +16,7 @@ const useFetch = url => {
           setState({ data: y, loading: false });
         }
       });
-  }, [url, setState]);
+  }, [url, count]);
 
   return state;
 };
@@ -44,7 +44,7 @@ const computeLongestWord = data => {
 
 export const UseMemoExampleOne = () => {
   const [count, setCount] = useState(0);
-  const { data } = useFetch("https://api.kanye.rest/");
+  const { data } = useFetch("https://api.kanye.rest/", count);
 
   const memoWord = useMemo(() => computeLongestWord(data), [data]);
 
