@@ -16,7 +16,8 @@ const UseCallbackExampleFour = () => {
 
   return (
     <>
-      Count: {count}
+      <p>Count: {count}</p>
+      <p>Other Count: {otherCounter}</p>
       <button onClick={increment}>+</button>
       <button onClick={decrement}>-</button>
       <button onClick={incrementOtherCounter}>incrementOtherCounter</button>

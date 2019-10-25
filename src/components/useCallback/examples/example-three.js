@@ -12,7 +12,7 @@ const Hello = React.memo(({ increment }) => {
 
 const Square = React.memo(({ n, increment }) => {
   useCountRenders();
-  return <button onClick={increment(n)}>{n}</button>;
+  return <button onClick={() => increment(n)}>{n}</button>;
 });
 
 export const UseCallbackExampleThree = () => {
@@ -20,7 +20,12 @@ export const UseCallbackExampleThree = () => {
   const favNums = [3, 7, 11];
 
   const addOne = useCallback(() => setCount(c => c + 1), [setCount]);
-  const increment = useCallback(n => setCount(c => c + n), [setCount]);
+  const increment = useCallback(
+    n => {
+      setCount(c => c + n);
+    },
+    [setCount]
+  );
 
   return (
     <div>

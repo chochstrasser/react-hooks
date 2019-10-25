@@ -10,7 +10,7 @@ const UseCallbackExampleOne = () => {
 
   return (
     <div>
-      <div style={{ border: "2px", background: "papayawhip", padding: "1rem" }}>Today I am {age} Years of Age</div>
+      <div style={{ border: "2px", background: "papayawhip", padding: "1rem", margin: "1rem 0" }}>Today I am {age} Years of Age</div>
       <Age handleClick={handleClick} />
       <Instructions doSomething={doSomething} />
     </div>
@@ -21,11 +21,12 @@ const Age = React.memo(({ handleClick }) => {
   console.log("render age");
   return (
     <div>
-      <pre>
+      <pre style={{ display: "inline" }}>
         {" "}
         - click the button below
         <span role="img" aria-label="emoji">
-          👇
+          {" "}
+          👉{" "}
         </span>
       </pre>
       <button onClick={handleClick}>Get older! </button>
@@ -37,7 +38,7 @@ const Instructions = React.memo(props => {
   console.log("render instructions");
   console.log("render instructions props", props);
   return (
-    <div style={{ background: "black", color: "yellow", padding: "1rem" }}>
+    <div style={{ background: "papayawhip", padding: ".25rem", margin: "1rem 0" }}>
       <p>Follow the instructions above as closely as possible</p>
     </div>
   );
