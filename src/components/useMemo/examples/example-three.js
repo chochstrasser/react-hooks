@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback, useMemo } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 
 let count = 0;
 
@@ -12,11 +12,13 @@ const ChildComponent = props => {
 const UseMemoExampleThree = () => {
   const [count, setCount] = useState(0);
 
-  const handleIncrement = useCallback(() => {
+  const handleIncrement = () => {
+    console.log("non-memo");
     setCount(prevCount => prevCount + 1);
-  }, []);
+  };
 
   const memoizedChildComponent = useMemo(() => {
+    console.log("memo");
     return <ChildComponent />;
   }, []);
 
@@ -24,7 +26,6 @@ const UseMemoExampleThree = () => {
     <div className="App">
       <h1>React Hooks - useMemo</h1>
       <p>In React, when a component's state or props change, that component is re-rendered along with any of it's child components.</p>
-
       <p>
         The <code>useMemo</code> hook allows you to memoize a child component and only re-render it if certain props or state changes....or
         not at all.
@@ -33,9 +34,7 @@ const UseMemoExampleThree = () => {
         <code>useMemo</code> is also a perfect use case for derived state.
       </p>
 
-      <p>
-        In this demo, we are rendering the same child component twice. Once as a memoized component and once as a non-memoized component.
-      </p>
+      <p>In this demo, we are rendering the same child component twice. One as a memoized component and one as a non-memoized component.</p>
       <p>
         The render count for each child instance is on the page so you can see which components re-render in response to the parent
         component's state changes.

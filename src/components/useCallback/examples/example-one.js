@@ -10,7 +10,7 @@ const UseCallbackExampleOne = () => {
 
   return (
     <div>
-      <div style={{ border: "2px", background: "papayawhip", padding: "1rem", margin: "1rem 0" }}>Today I am {age} Years of Age</div>
+      <div style={{ border: "2px", background: "papayawhip", padding: "1rem" }}>Today I am {age} Years of Age</div>
       <Age handleClick={handleClick} />
       <Instructions doSomething={doSomething} />
     </div>

@@ -7,6 +7,10 @@ ul {
   background-color: #f3f3f3;
 }
 
+ul + ul {
+  margin-bottom: 1rem;
+}
+
 li {
   float: left;
 }
